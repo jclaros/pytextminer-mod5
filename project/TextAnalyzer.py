@@ -34,6 +34,13 @@ class TextAnalyzer:
         distribution = dist.most_common(30)
         face_post.set_distribution(distribution)
 
+    def populate_twcomment(self, tw_post, text):
+        tokens = nltk.word_tokenize(text)
+        base_cleaned = [w for w in tokens if w not in self.stopwords and len(w) > 1]
+        dist = FreqDist(base_cleaned)
+        distribution = dist.most_common(30)
+        tw_post.set_distribution(distribution)
+
 
     def calculate_total_distribution(self):
         dist = FreqDist(self.cleaned)
